@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es" class="loading">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="El Pescador de bwin: pesca la mejor cuota. Apuesta a nuestra Combi+ o crea la tuya y repártete botes de hasta 1.000€.">
+    <title>El Pescador - bwin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bwin-black: #000000;
+            --bwin-dark-gray: #222222;
+            --bwin-white: #ffffff;
+            --bwin-yellow: #FFDE00;
+            --bwin-gold: #FFD700;
+            --bwin-gold-dark: #D4B400;
+            --bwin-green: #2E8B57;
+            --bwin-green-light: #90EE90;
+            --bwin-transition: 0.3s ease;
+            --bwin-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background:
+                radial-gradient(ellipse at 20% 0%, rgba(46, 139, 87, 0.18) 0%, transparent 45%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 222, 0, 0.12) 0%, transparent 40%),
+                linear-gradient(180deg, #0a1628 0%, #0d2137 35%, #0a1628 70%, #000000 100%);
+            color: var(--bwin-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body.loading {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .bwin-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .bwin-section {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .bwin-reduced-spacing-top {
+            padding-top: 30px;
+        }
+
+        .bwin-section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--bwin-white);
+        }
+
+        .bwin-section-subtitle {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 40px;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .bwin-highlight {
+            color: var(--bwin-yellow);
+            font-weight: 700;
+        }
+
+        /* Promo header image */
+        .mi-promo-header-container {
+            width: 100%;
+            overflow: hidden;
+            background: var(--bwin-black);
+            position: relative;
+        }
+
+        .mi-promo-header-image {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Main header */
+        .bwin-sports-header {
+            position: relative;
+            padding: 50px 0 40px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .bwin-sports-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(10, 22, 40, 0.2) 0%, rgba(10, 22, 40, 0.85) 100%),
+                radial-gradient(circle at 50% 0%, rgba(255, 222, 0, 0.15), transparent 55%);
+            pointer-events: none;
+        }
+
+        .bwin-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bwin-header-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            color: var(--bwin-yellow);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        .bwin-header-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 760px;
+            margin: 0 auto 32px;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .optinButton {
+            display: flex;
+            justify-content: center;
+        }
+
+        .bwin-header-cta {
+            display: inline-block !important;
+            padding: 18px 50px !important;
+            background: linear-gradient(135deg, var(--bwin-gold), var(--bwin-gold-dark)) !important;
+            color: var(--bwin-black) !important;
+            font-weight: 800 !important;
+            font-size: 1.2rem !important;
+            text-transform: uppercase !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4) !important;
+            border: 3px solid var(--bwin-gold) !important;
+            letter-spacing: 1.5px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            cursor: pointer;
+        }
+
+        .bwin-header-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .bwin-header-cta:hover {
+            transform: translateY(-4px) scale(1.03) !important;
+            box-shadow: 0 10px 28px rgba(255, 215, 0, 0.55) !important;
+        }
+
+        .bwin-header-cta:hover::before {
+            left: 100%;
+        }
+
+        .bwin-cta-button {
+            display: inline-block;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--bwin-gold), var(--bwin-gold-dark));
+            color: var(--bwin-black);
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.35);
+            border: 2px solid var(--bwin-gold);
+            letter-spacing: 1px;
+        }
+
+        .bwin-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Cards */
+        .bwin-card {
+            background: var(--bwin-white);
+            border: 3px solid var(--bwin-gold);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: var(--bwin-dark-gray);
+            height: 100%;
+        }
+
+        .bwin-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--bwin-green), var(--bwin-gold));
+        }
+
+        .bwin-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(255, 215, 0, 0.25);
+        }
+
+        .bwin-card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .bwin-card-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: var(--bwin-black);
+        }
+
+        .bwin-card-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--bwin-gold), var(--bwin-gold-dark));
+            color: var(--bwin-black);
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .bwin-card-text {
+            font-size: 0.98rem;
+            color: var(--bwin-dark-gray);
+            margin-bottom: 16px;
+        }
+
+        .bwin-card-prize {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--bwin-green);
+            margin-top: auto;
+        }
+
+        .bwin-card-prize span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .bwin-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .bwin-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Info boxes */
+        .bwin-info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 215, 0, 0.45);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: var(--bwin-transition);
+        }
+
+        .bwin-info-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--bwin-gold);
+            transform: translateX(4px);
+        }
+
+        .bwin-info-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .bwin-info-content {
+            font-size: 0.98rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .bwin-info-content strong {
+            color: var(--bwin-yellow);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        /* Double crown banner */
+        .bwin-crown-banner {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(46, 139, 87, 0.2));
+            border: 3px solid var(--bwin-gold);
+            border-radius: 18px;
+            padding: 36px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--bwin-shadow);
+        }
+
+        .bwin-crown-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 222, 0, 0.08) 0%, transparent 50%);
+            animation: bwinPulseGlow 6s ease-in-out infinite;
+            animation-play-state: paused;
+            pointer-events: none;
+        }
+
+        html:not(.loading) .bwin-crown-banner::before {
+            animation-play-state: running;
+        }
+
+        .bwin-crown-banner > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .bwin-crown-title {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 900;
+            color: var(--bwin-yellow);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .bwin-crown-text {
+            font-size: 1.05rem;
+            max-width: 680px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        /* Steps */
+        .bwin-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            counter-reset: bwin-step;
+        }
+
+        .bwin-step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            border-radius: 14px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: var(--bwin-transition);
+            counter-increment: bwin-step;
+        }
+
+        .bwin-step:hover {
+            border-color: var(--bwin-gold);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .bwin-step-number {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bwin-gold), var(--bwin-gold-dark));
+            color: var(--bwin-black);
+            font-weight: 900;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.35);
+        }
+
+        .bwin-step-number::before {
+            content: counter(bwin-step);
+        }
+
+        .bwin-step h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--bwin-yellow);
+            text-transform: uppercase;
+        }
+
+        .bwin-step p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Accordion */
+        .bwin-accordion-container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .bwin-accordion-item {
+            margin-bottom: 12px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .bwin-accordion-toggle {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            width: 0;
+        }
+
+        .bwin-accordion-header {
+            display: block;
+            padding: 18px 50px 18px 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+            color: var(--bwin-white);
+            transition: var(--bwin-transition);
+            user-select: none;
+        }
+
+        .bwin-accordion-header::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--bwin-gold);
+            transition: var(--bwin-transition);
+        }
+
+        .bwin-accordion-toggle:checked + .bwin-accordion-header {
+            background: rgba(255, 215, 0, 0.12);
+            color: var(--bwin-yellow);
+        }
+
+        .bwin-accordion-toggle:checked + .bwin-accordion-header::after {
+            content: '−';
+            color: var(--bwin-yellow);
+        }
+
+        .bwin-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .bwin-accordion-toggle:checked ~ .bwin-accordion-content {
+            max-height: 1200px;
+        }
+
+        .bwin-accordion-body {
+            padding: 0 20px 20px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.95rem;
+        }
+
+        .bwin-accordion-body ul,
+        .bwin-accordion-body ol {
+            margin: 12px 0 0 20px;
+        }
+
+        .bwin-accordion-body li {
+            margin-bottom: 8px;
+        }
+
+        .bwin-terms-header {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800 !important;
+            color: var(--bwin-yellow) !important;
+        }
+
+        .bwin-cta-center {
+            text-align: center;
+            margin-top: 36px;
+        }
+
+        /* Floating thematic elements */
+        .bwin-floating-wrap {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bwin-floating-element {
+            position: absolute;
+            opacity: 0;
+            z-index: 2;
+            font-size: 1.8rem;
+            animation: bwinFloating 8s ease-in-out infinite;
+            animation-play-state: paused;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+        }
+
+        html:not(.loading) .bwin-floating-element {
+            animation-play-state: running;
+            opacity: 0.35;
+        }
+
+        .bwin-float-1 { top: 12%; left: 6%; animation-delay: 0s; }
+        .bwin-float-2 { top: 28%; right: 8%; animation-delay: 1.5s; font-size: 2.2rem; }
+        .bwin-float-3 { bottom: 18%; left: 12%; animation-delay: 3s; }
+        .bwin-float-4 { top: 55%; right: 14%; animation-delay: 4.5s; font-size: 1.5rem; }
+
+        /* Animations */
+        @keyframes bwinFadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bwinFloating {
+            0%, 100% { transform: translateY(0) rotate(-4deg); }
+            50% { transform: translateY(-18px) rotate(4deg); }
+        }
+
+        @keyframes bwinPulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes bwinWave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(12px); }
+        }
+
+        .bwin-fade-up {
+            opacity: 0;
+            animation: bwinFadeUp 0.8s ease forwards;
+            animation-play-state: paused;
+        }
+
+        html:not(.loading) .bwin-fade-up {
+            animation-play-state: running;
+        }
+
+        .bwin-delay-1 { animation-delay: 0.15s; }
+        .bwin-delay-2 { animation-delay: 0.3s; }
+        .bwin-delay-3 { animation-delay: 0.45s; }
+        .bwin-delay-4 { animation-delay: 0.6s; }
+
+        .bwin-wave-line {
+            height: 3px;
+            width: 80px;
+            margin: 0 auto 28px;
+            background: linear-gradient(90deg, transparent, var(--bwin-gold), transparent);
+            border-radius: 2px;
+            animation: bwinWave 3s ease-in-out infinite;
+            animation-play-state: paused;
+        }
+
+        html:not(.loading) .bwin-wave-line {
+            animation-play-state: running;
+        }
+
+        /* Prize pot highlight */
+        .bwin-prize-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .bwin-prize-item {
+            background: rgba(0, 0, 0, 0.35);
+            border: 2px solid var(--bwin-gold);
+            border-radius: 12px;
+            padding: 22px 16px;
+            text-align: center;
+            transition: var(--bwin-transition);
+        }
+
+        .bwin-prize-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.03);
+        }
+
+        .bwin-prize-item strong {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--bwin-yellow);
+            margin: 6px 0;
+        }
+
+        .bwin-prize-item span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bwin-section {
+                padding: 30px 0;
+            }
+
+            .bwin-header-title {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+
+            .bwin-sports-header {
+                padding: 36px 0 28px;
+            }
+
+            .mi-promo-header-image {
+                max-height: 320px;
+            }
+
+            .bwin-grid-2,
+            .bwin-grid-3,
+            .bwin-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .bwin-header-cta {
+                padding: 16px 36px !important;
+                font-size: 1.05rem !important;
+            }
+
+            .bwin-floating-element {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bwin-container {
+                padding: 0 15px;
+            }
+
+            .bwin-header-title {
+                font-size: 1.8rem;
+            }
+
+            .bwin-header-cta,
+            .bwin-cta-button {
+                width: 100%;
+                text-align: center;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .bwin-info-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .bwin-card {
+                padding: 22px 16px;
+            }
+
+            .bwin-crown-banner {
+                padding: 28px 18px;
+            }
+
+            .bwin-section-title {
+                font-size: 1.5rem;
+            }
+
+            .mi-promo-header-image {
+                max-height: 220px;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    <!-- Header promocional -->
+    <div class="mi-promo-header-container">
+        <img
+            src="https://scmedia.itsfogo.com/$-$/8df386305d544ce4934db483590e6b5f.jpg"
+            alt="El Pescador"
+            class="mi-promo-header-image"
+            width="950"
+            height="400"
+            loading="lazy"
+        >
+    </div>
+
+    <!-- Header principal -->
+    <header class="bwin-sports-header">
+        <div class="bwin-floating-wrap" aria-hidden="true">
+            <span class="bwin-floating-element bwin-float-1">🎣</span>
+            <span class="bwin-floating-element bwin-float-2">🐟</span>
+            <span class="bwin-floating-element bwin-float-3">⚓</span>
+            <span class="bwin-floating-element bwin-float-4">🏆</span>
+        </div>
+        <div class="bwin-container bwin-header-content">
+            <h1 class="bwin-header-title bwin-fade-up">🎣 El Pescador</h1>
+            <div class="bwin-wave-line"></div>
+            <p class="bwin-header-subtitle bwin-fade-up bwin-delay-1">
+                <span class="bwin-highlight">Pesca la mejor cuota</span> del día.
+                Ve a lo seguro con nuestra <span class="bwin-highlight">Combi+</span>
+                o intenta superarla creando la tuya propia y pelea por botes de hasta
+                <span class="bwin-highlight">1.000€</span>.
+            </p>
+            <div class="optinButton bwin-fade-up bwin-delay-2">
+                <a
+                    href="#participar"
+                    class="bwin-header-cta"
+                    data-offer-id="el-pescador-2026"
+                    data-offer-message-error="Error técnico"
+                    data-offer-message-expired="La oferta ha expirado"
+                    data-offer-message-invalid="Inválido"
+                    data-offer-message-not-offered="No disponible"
+                    data-offer-message-offered="¡Apuntarme!"
+                    data-offer-message-opted-in="¡Apuntado!"
+                    data-offer-message-opted-out="No apuntado"
+                    data-offer-type="eds"
+                    data-offer-status="offered"
+                >¡Quiero pescar!</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Requisitos básicos -->
+    <section class="bwin-section bwin-reduced-spacing-top" id="requisitos">
+        <div class="bwin-container">
+            <h2 class="bwin-section-title bwin-fade-up">Requisitos para participar</h2>
+            <p class="bwin-section-subtitle bwin-fade-up bwin-delay-1">
+                Cumple estas condiciones y lanza el anzuelo.
+            </p>
+            <div class="bwin-fade-up bwin-delay-2">
+                <div class="bwin-info-box">
+                    <div class="bwin-info-icon">💶</div>
+                    <div class="bwin-info-content">
+                        <strong>Apuesta mínima: 5€</strong>
+                        Solo cuentan las apuestas realizadas con dinero real. El importe mínimo por apuesta válida es de 5€.
+                    </div>
+                </div>
+                <div class="bwin-info-box">
+                    <div class="bwin-info-icon">⏱️</div>
+                    <div class="bwin-info-content">
+                        <strong>Mismo día: apuesta y resolución</strong>
+                        La apuesta debe realizarse y determinarse (resolverse) el mismo día natural para optar al bote.
+                    </div>
+                </div>
+                <div class="bwin-info-box">
+                    <div class="bwin-info-icon">✅</div>
+                    <div class="bwin-info-content">
+                        <strong>Opt-in obligatorio</strong>
+                        Debes apuntarte a la promoción antes de apostar para que tu participación sea válida.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo participar -->
+    <section class="bwin-section" id="participar">
+        <div class="bwin-container">
+            <h2 class="bwin-section-title bwin-fade-up">¿Cómo se participa?</h2>
+            <p class="bwin-section-subtitle bwin-fade-up bwin-delay-1">
+                Elige tu estrategia: ve a lo seguro o intenta superar a la casa.
+            </p>
+            <div class="bwin-grid-2">
+                <article class="bwin-card bwin-fade-up bwin-delay-1">
+                    <div class="bwin-card-icon">🛟</div>
+                    <div class="bwin-card-badge">Opción A</div>
+                    <h3 class="bwin-card-title">Nuestra Supercuota</h3>
+                    <p class="bwin-card-text">
+                        Apuesta a la combinada seleccionada por la casa
+                        (<strong>(Combi+)</strong>. Ideal si prefieres ir a lo seguro
+                        con una cuota ya mejorada.
+                    </p>
+                    <p class="bwin-card-prize">
+                        <span>Bote a repartir</span>
+                        500€
+                    </p>
+                </article>
+                <article class="bwin-card bwin-fade-up bwin-delay-2">
+                    <div class="bwin-card-icon">🎣</div>
+                    <div class="bwin-card-badge">Opción B</div>
+                    <h3 class="bwin-card-title">Superar a la casa</h3>
+                    <p class="bwin-card-text">
+                        Crea una combinada propia de <strong>5 o más selecciones</strong>
+                        cuya cuota total sea <strong>mayor</strong> que nuestra Combi+.
+                        ¡Atrévete a pescar más!
+                    </p>
+                    <p class="bwin-card-prize">
+                        <span>Bote a repartir</span>
+                        1.000€
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premios -->
+    <section class="bwin-section" id="premios">
+        <div class="bwin-container">
+            <h2 class="bwin-section-title bwin-fade-up">Premios: botes a repartir</h2>
+            <p class="bwin-section-subtitle bwin-fade-up bwin-delay-1">
+                Los botes se reparten a partes iguales entre todos los acertantes de cada opción.
+            </p>
+            <div class="bwin-prize-strip bwin-fade-up bwin-delay-2">
+                <div class="bwin-prize-item">
+                    <span>Opción A · Combi+</span>
+                    <strong>500€</strong>
+                    <span>Entre acertantes</span>
+                </div>
+                <div class="bwin-prize-item">
+                    <span>Opción B · Tu combi</span>
+                    <strong>1.000€</strong>
+                    <span>Entre acertantes</span>
+                </div>
+                <div class="bwin-prize-item">
+                    <span>Doble Corona</span>
+                    <strong>Ambos</strong>
+                    <span>500€ + 1.000€</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doble Corona -->
+    <section class="bwin-section bwin-reduced-spacing-top">
+        <div class="bwin-container">
+            <div class="bwin-crown-banner bwin-fade-up">
+                <div class="bwin-crown-title">👑 Doble Corona</div>
+                <p class="bwin-crown-text">
+                    Si juegas y aciertas <strong>ambas opciones</strong> (nuestra Combi+ y tu combinada propia),
+                    participas en el reparto de <span class="bwin-highlight">ambos botes</span>:
+                    los <strong>500€</strong> de la Opción A y los <strong>1.000€</strong> de la Opción B.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pasos -->
+    <section class="bwin-section">
+        <div class="bwin-container">
+            <h2 class="bwin-section-title bwin-fade-up">Pasos para pescar</h2>
+            <p class="bwin-section-subtitle bwin-fade-up bwin-delay-1">
+                Tres movimientos y estás dentro.
+            </p>
+            <div class="bwin-steps bwin-fade-up bwin-delay-2">
+                <div class="bwin-step">
+                    <div class="bwin-step-number" aria-hidden="true"></div>
+                    <h3>Apúntate</h3>
+                    <p>Pulsa «¡Quiero pescar!» y confirma tu opt-in en la promoción.</p>
+                </div>
+                <div class="bwin-step">
+                    <div class="bwin-step-number" aria-hidden="true"></div>
+                    <h3>Elige camino</h3>
+                    <p>Apuesta a la Combi+ (A), crea tu combi de 5+ (B), o ve a por la Doble Corona.</p>
+                </div>
+                <div class="bwin-step">
+                    <div class="bwin-step-number" aria-hidden="true"></div>
+                    <h3>Apuesta ≥ 5€</h3>
+                    <p>Con dinero real, el mismo día en que se resuelvan tus selecciones.</p>
+                </div>
+            </div>
+            <div class="bwin-cta-center bwin-fade-up bwin-delay-3">
+                <a href="#participar" class="bwin-cta-button">Ver opciones de participación</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="bwin-section bwin-reduced-spacing-top">
+        <div class="bwin-container">
+            <h2 style="text-align: center; margin-bottom: 30px;">PREGUNTAS FRECUENTES</h2>
+            <div class="bwin-accordion-container">
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="faq1" class="bwin-accordion-toggle">
+                    <label for="faq1" class="bwin-accordion-header">¿Cómo funciona la promoción?</label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            El Pescador te invita a «pescar» la mejor cuota del día. Puedes apostar a la
+                            combinada mejorada de bwin (Combi+ / Opción A) o crear tu propia combinada de
+                            5 o más selecciones con una cuota superior a la Combi+ (Opción B). Los acertantes
+                            de cada opción se reparten el bote correspondiente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="faq2" class="bwin-accordion-toggle">
+                    <label for="faq2" class="bwin-accordion-header">¿Cuáles son los requisitos?</label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            <ul>
+                                <li>Apuesta mínima de <strong>5€</strong> con dinero real.</li>
+                                <li>La apuesta debe realizarse y resolverse el <strong>mismo día</strong>.</li>
+                                <li>Debes estar apuntado (opt-in) a la promoción.</li>
+                                <li>Opción A: apostar a la Combi+ seleccionada por la casa.</li>
+                                <li>Opción B: combinada propia de 5+ selecciones con cuota mayor que la Combi+.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="faq3" class="bwin-accordion-toggle">
+                    <label for="faq3" class="bwin-accordion-header">¿Cuándo se pagan los premios?</label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            Los botes se calculan una vez resueltas todas las apuestas válidas del día.
+                            El importe correspondiente se abonará en el monedero bwin de cada acertante
+                            en un plazo de hasta <strong>72 horas hábiles</strong> tras el cierre del día promocional.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="faq4" class="bwin-accordion-toggle">
+                    <label for="faq4" class="bwin-accordion-header">¿Qué pasa si acierto ambas opciones?</label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            Consigues la <strong>Doble Corona</strong>: participas en el reparto de ambos botes
+                            (500€ de la Opción A y 1.000€ de la Opción B). Debes haber realizado y acertado
+                            una apuesta válida en cada camino el mismo día.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="faq5" class="bwin-accordion-toggle">
+                    <label for="faq5" class="bwin-accordion-header">¿Hay límites de participación?</label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            Puedes participar con una o varias apuestas válidas por día, siempre que cumplan
+                            los requisitos de importe, tipo de combinada y resolución el mismo día.
+                            bwin se reserva el derecho a limitar o excluir participaciones que incumplan
+                            las reglas generales de la casa o los términos de esta promoción.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="faq6" class="bwin-accordion-toggle">
+                    <label for="faq6" class="bwin-accordion-header">¿Qué pasa si mi apuesta no se resuelve el mismo día?</label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            Esa apuesta <strong>no será válida</strong> para el bote del día. Solo cuentan
+                            las apuestas realizadas y determinadas el mismo día natural. Si algún evento
+                            se aplaza o queda sin resolver, esa participación queda fuera del reparto.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Términos y condiciones -->
+    <section class="bwin-section">
+        <div class="bwin-container">
+            <h2 style="text-align: center; margin-bottom: 30px;">TÉRMINOS Y CONDICIONES</h2>
+            <div class="bwin-accordion-container">
+                <div class="bwin-accordion-item">
+                    <input type="checkbox" id="terms" class="bwin-accordion-toggle bwin-terms-toggle">
+                    <label for="terms" class="bwin-accordion-header bwin-terms-header">
+                        VER TÉRMINOS Y CONDICIONES COMPLETOS
+                    </label>
+                    <div class="bwin-accordion-content">
+                        <div class="bwin-accordion-body">
+                            <ol>
+                                <li>
+                                    <strong>Duración:</strong> La promoción «El Pescador» estará vigente
+                                    durante el periodo anunciado en bwin.es. Cada jornada promocional
+                                    comprende el día natural correspondiente (hora peninsular española).
+                                </li>
+                                <li>
+                                    <strong>Elegibilidad:</strong> Dirigida a clientes de bwin.es mayores de edad,
+                                    con cuenta verificada y que hayan completado el opt-in de la promoción
+                                    antes de realizar la apuesta válida.
+                                </li>
+                                <li>
+                                    <strong>Requisitos de apuesta:</strong> Apuesta mínima de 5€ con dinero real.
+                                    La apuesta debe realizarse y resolverse el mismo día. Opción A: combinada
+                                    Combi+ seleccionada por bwin. Opción B: combinada propia de al menos 5
+                                    selecciones con cuota total superior a la Combi+ del día.
+                                </li>
+                                <li>
+                                    <strong>Premios:</strong> Si hay acertantes de la Opción A, se reparte un bote
+                                    de 500€ a partes iguales entre ellos. Si hay acertantes de la Opción B,
+                                    se reparte un bote de 1.000€ a partes iguales. Los premios se abonarán
+                                    en el monedero del cliente y no están sujetos a requisitos de rollover
+                                    adicionales salvo indicación expresa.
+                                </li>
+                                <li>
+                                    <strong>Doble Corona:</strong> El cliente que acierte ambas opciones el mismo
+                                    día participa en el reparto de ambos botes (500€ y 1.000€).
+                                </li>
+                                <li>
+                                    <strong>Exclusiones:</strong> No serán válidas apuestas con fondos de bono,
+                                    apuestas anuladas, cashout, ni selecciones no resueltas el mismo día.
+                                    bwin podrá invalidar participaciones fraudulentas o irregulares.
+                                </li>
+                                <li>
+                                    <strong>Generales:</strong> Se aplican los términos y condiciones generales
+                                    de bwin.es y la normativa de juego responsable. Juego solo para mayores
+                                    de 18 años. Juega con responsabilidad.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script mínimo -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.classList.remove('loading');
+            document.body.classList.remove('loading');
+        });
+        document.documentElement.classList.add('loading');
+        document.body.classList.add('loading');
+    </script>
+</body>
+</html>
