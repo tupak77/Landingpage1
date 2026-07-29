@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%A3%3C/text%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Promo El Pescador: las mejores capturas del día directas a tu mesa. Apúntate y recibe ofertas de pescado fresco."
+    />
+    <title>Promo El Pescador · Pescado fresco cada día</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="site-header">
+        <a class="brand" href="#top">
+          <span class="brand-icon" aria-hidden="true">🎣</span>
+          <span>El Pescador</span>
+        </a>
+        <nav class="site-nav">
+          <a href="#beneficios">Beneficios</a>
+          <a href="#capturas">Capturas</a>
+          <a href="#promo">Promoción</a>
+        </nav>
+      </header>
+
+      <main>
+        <section id="top" class="hero">
+          <div class="hero-content">
+            <p class="eyebrow">Pesca sostenible · Lonja local</p>
+            <h1>El mar, directo a tu mesa</h1>
+            <p class="lead">
+              Recibe cada mañana las mejores capturas del día con hasta un
+              <strong>30% de descuento</strong> para los primeros suscriptores.
+            </p>
+            <a class="cta" href="#promo">Quiero mi promo</a>
+            <dl class="stats">
+              <div><dt id="stat-captures">0</dt><dd>capturas semanales</dd></div>
+              <div><dt id="stat-ports">0</dt><dd>puertos aliados</dd></div>
+              <div><dt id="stat-hours">0</dt><dd>horas del mar a casa</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section id="beneficios" class="features">
+          <h2>Por qué El Pescador</h2>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-icon" aria-hidden="true">🌊</span>
+              <h3>Frescura garantizada</h3>
+              <p>De la lonja a tu puerta en menos de 24 horas.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon" aria-hidden="true">♻️</span>
+              <h3>Pesca sostenible</h3>
+              <p>Trabajamos solo con flotas certificadas y de temporada.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon" aria-hidden="true">💶</span>
+              <h3>Precio de lonja</h3>
+              <p>Sin intermediarios: pagas lo justo por el mejor pescado.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="capturas" class="catches">
+          <h2>Capturas destacadas</h2>
+          <ul class="catch-list">
+            <li><span aria-hidden="true">🐟</span> Lubina salvaje</li>
+            <li><span aria-hidden="true">🦐</span> Gambas de la bahía</li>
+            <li><span aria-hidden="true">🦑</span> Calamar de potera</li>
+            <li><span aria-hidden="true">🦞</span> Bogavante del norte</li>
+          </ul>
+        </section>
+
+        <section id="promo" class="promo">
+          <div class="promo-card">
+            <h2>Apúntate a la promo</h2>
+            <p>Déjanos tu correo y recibe el catálogo con descuentos exclusivos.</p>
+            <form id="promo-form" novalidate>
+              <label for="email">Correo electrónico</label>
+              <div class="field-row">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  inputmode="email"
+                  autocomplete="email"
+                  placeholder="tu@correo.com"
+                  required
+                />
+                <button type="submit">Suscribirme</button>
+              </div>
+              <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© <span id="year"></span> El Pescador · Hecho con amor por el mar.</p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

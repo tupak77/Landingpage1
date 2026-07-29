@@ -1,0 +1,21 @@
+{
+  "name": "landingpage1",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Promo El Pescador - a fishing promotion landing page",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "globals": "^17.8.0",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
+  }
+}
