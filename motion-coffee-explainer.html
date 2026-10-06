@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vertical 9:16 editorial explainer-style motion graphic: a coffee cup bounces in, speech bubbles and counters pop up.">
+    <title>Coffee Motion Explainer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --paper: #F4ECDD;
+            --paper-edge: #E9DDC7;
+            --ink: #111111;
+            --orange: #FF6A1A;
+            --white: #FFFFFF;
+            --dot: rgba(17, 17, 17, 0.09);
+            --shadow: rgba(17, 17, 17, 0.22);
+            /* 45° drop shadow: equal x/y offset, no blur */
+            --off: 10px;
+            --stage-w: 1080px;
+            --stage-h: 1920px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background: #1b1a18;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Fixed 1080x1920 canvas, scaled to fit the viewport */
+        .viewport {
+            width: calc(var(--stage-w) * var(--scale, 0.4));
+            height: calc(var(--stage-h) * var(--scale, 0.4));
+            position: relative;
+        }
+
+        .stage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--stage-w);
+            height: var(--stage-h);
+            transform: scale(var(--scale, 0.4));
+            transform-origin: 0 0;
+            overflow: hidden;
+            background-color: var(--paper);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Halftone dot grid */
+        .stage::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(var(--dot) 2.2px, transparent 2.6px);
+            background-size: 28px 28px;
+            background-position: 14px 14px;
+            -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 30%, rgba(0, 0, 0, 0.35) 80%);
+            mask-image: radial-gradient(ellipse at 50% 45%, #000 30%, rgba(0, 0, 0, 0.35) 80%);
+            pointer-events: none;
+        }
+
+        /* Paper grain + vignette */
+        .stage::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.15 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+                radial-gradient(ellipse at 50% 50%, transparent 55%, var(--paper-edge) 100%);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .layer {
+            position: absolute;
+            will-change: transform, opacity;
+        }
+
+        /* ---------- Labels with orange highlight ---------- */
+        .label {
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .label .mark {
+            position: relative;
+            display: inline-block;
+            padding: 6px 26px 2px;
+            font-family: 'Archivo Black', 'Inter', sans-serif;
+            font-size: 80px;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+
+        .label .mark::before {
+            content: '';
+            position: absolute;
+            inset: 10px 0 4px;
+            background: var(--orange);
+            box-shadow: var(--off) var(--off) 0 var(--shadow);
+            transform: scaleX(var(--wipe, 0));
+            transform-origin: left center;
+            z-index: -1;
+        }
+
+        .label .kicker {
+            display: block;
+            font-weight: 900;
+            font-size: 34px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 18px;
+        }
+
+        #label-top {
+            top: 150px;
+        }
+
+        #label-end {
+            top: 1560px;
+        }
+
+        #label-end .mark {
+            font-size: 70px;
+        }
+
+        /* ---------- Coffee cup ---------- */
+        #cup {
+            left: 50%;
+            top: 560px;
+            width: 420px;
+            margin-left: -210px;
+            transform-origin: 50% 100%;
+        }
+
+        #cup svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+            filter: drop-shadow(var(--off) var(--off) 0 var(--shadow));
+        }
+
+        .steam path {
+            fill: none;
+            stroke: var(--ink);
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-dasharray: 140;
+            stroke-dashoffset: 140;
+            opacity: 0;
+        }
+
+        #cup-shadow {
+            left: 50%;
+            top: 1030px;
+            width: 360px;
+            height: 34px;
+            margin-left: -180px;
+            border-radius: 50%;
+            background: rgba(17, 17, 17, 0.14);
+            transform-origin: center;
+        }
+
+        /* ---------- Speech bubbles ---------- */
+        .bubble {
+            padding: 26px 38px 28px;
+            background: var(--ink);
+            color: var(--white);
+            border-radius: 44px;
+            font-weight: 900;
+            font-size: 44px;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            box-shadow: var(--off) var(--off) 0 var(--shadow);
+            white-space: nowrap;
+        }
+
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .bubble.tail-left::after {
+            left: 56px;
+            border-width: 34px 34px 0 0;
+            border-color: var(--ink) transparent transparent transparent;
+        }
+
+        .bubble.tail-right::after {
+            right: 56px;
+            border-width: 34px 0 0 34px;
+            border-color: var(--ink) transparent transparent transparent;
+        }
+
+        .bubble em {
+            font-style: normal;
+            color: var(--orange);
+        }
+
+        #bubble-1 {
+            left: 70px;
+            top: 470px;
+            transform-origin: 18% 120%;
+        }
+
+        #bubble-2 {
+            right: 70px;
+            top: 610px;
+            transform-origin: 82% 120%;
+        }
+
+        /* ---------- Counters ---------- */
+        .counters {
+            left: 60px;
+            right: 60px;
+            top: 1130px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .counter {
+            position: relative;
+            background: var(--white);
+            border: 6px solid var(--ink);
+            border-radius: 36px;
+            padding: 30px 20px 26px;
+            text-align: center;
+            box-shadow: var(--off) var(--off) 0 var(--shadow);
+            transform-origin: center;
+        }
+
+        .counter .num {
+            display: block;
+            font-family: 'Archivo Black', 'Inter', sans-serif;
+            font-size: 128px;
+            line-height: 1;
+            letter-spacing: -3px;
+            color: var(--ink);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .counter .num small {
+            font-size: 64px;
+            letter-spacing: -1px;
+        }
+
+        .counter .cap {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 14px;
+            background: var(--orange);
+            font-weight: 900;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+
+        /* Little accent bursts */
+        .burst {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--orange);
+            opacity: 0;
+        }
+
+        .replay {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            padding: 10px 16px;
+            border: 2px solid var(--ink);
+            border-radius: 999px;
+            background: var(--paper);
+            color: var(--ink);
+            font: 800 14px 'Inter', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 var(--shadow);
+            cursor: pointer;
+        }
+
+        .replay:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport" id="viewport">
+        <div class="stage" id="stage" role="img" aria-label="Animated explainer: a steaming coffee cup bounces in, speech bubbles pop up, and counters show 2 billion cups a day and 95 milligrams of caffeine per cup.">
+
+            <div class="layer label" id="label-top">
+                <span class="kicker">Explained</span>
+                <span class="mark">Your morning cup</span>
+            </div>
+
+            <div class="layer" id="cup-shadow"></div>
+
+            <div class="layer" id="cup">
+                <svg viewBox="0 0 420 470" aria-hidden="true">
+                    <g class="steam">
+                        <path d="M150 150 C 120 115, 180 85, 150 40" />
+                        <path d="M210 140 C 180 100, 240 70, 210 15" />
+                        <path d="M270 150 C 240 115, 300 85, 270 40" />
+                    </g>
+                    <!-- saucer -->
+                    <ellipse cx="200" cy="440" rx="190" ry="26" fill="#FFFFFF" stroke="#111" stroke-width="12" />
+                    <!-- handle -->
+                    <path d="M325 250 C 400 245, 405 360, 320 360" fill="none" stroke="#111" stroke-width="34" stroke-linecap="round" />
+                    <path d="M325 250 C 400 245, 405 360, 320 360" fill="none" stroke="#FF6A1A" stroke-width="12" stroke-linecap="round" />
+                    <!-- body -->
+                    <path d="M60 190 H 340 L 318 380 Q 312 425 268 425 H 132 Q 88 425 82 380 Z" fill="#FF6A1A" stroke="#111" stroke-width="12" stroke-linejoin="round" />
+                    <!-- band -->
+                    <path d="M72 262 H 330" stroke="#111" stroke-width="12" />
+                    <!-- rim + coffee -->
+                    <ellipse cx="200" cy="190" rx="140" ry="28" fill="#FFFFFF" stroke="#111" stroke-width="12" />
+                    <ellipse cx="200" cy="194" rx="112" ry="16" fill="#3B2314" />
+                    <!-- shine -->
+                    <path d="M108 290 L 116 370" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.85" />
+                </svg>
+            </div>
+
+            <div class="layer bubble tail-left" id="bubble-1">I need <em>coffee</em>.</div>
+            <div class="layer bubble tail-right" id="bubble-2">Make it a <em>double</em>!</div>
+
+            <div class="layer counters">
+                <div class="counter" id="counter-1">
+                    <span class="num"><span data-count="2" data-decimals="0">0</span><small>B+</small></span>
+                    <span class="cap">Cups a day</span>
+                </div>
+                <div class="counter" id="counter-2">
+                    <span class="num"><span data-count="95" data-decimals="0">0</span><small>mg</small></span>
+                    <span class="cap">Caffeine / cup</span>
+                </div>
+            </div>
+
+            <div class="layer label" id="label-end">
+                <span class="mark">The world runs on it</span>
+            </div>
+        </div>
+    </div>
+
+    <button class="replay" id="replay" type="button">Replay</button>
+
+    <script>
+        (function () {
+            var stage = document.getElementById('stage');
+            var root = document.documentElement;
+            var LOOP_MS = 9000;
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function fit() {
+                var s = Math.min(window.innerWidth / 1080, window.innerHeight / 1920) * 0.94;
+                root.style.setProperty('--scale', s.toFixed(4));
+            }
+            window.addEventListener('resize', fit);
+            fit();
+
+            // Playful easings
+            var POP = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+            var SNAP = 'cubic-bezier(0.2, 0.9, 0.2, 1)';
+            var OUT = 'cubic-bezier(0.5, 0, 0.75, 0)';
+
+            var $ = function (sel) { return stage.querySelector(sel); };
+            var running = [];
+            var timers = [];
+
+            function anim(el, frames, opts) {
+                var a = el.animate(frames, Object.assign({ fill: 'both' }, opts));
+                running.push(a);
+                return a;
+            }
+
+            function at(ms, fn) {
+                timers.push(setTimeout(fn, ms));
+            }
+
+            function countUp(el, delay, dur) {
+                var target = parseFloat(el.dataset.count);
+                var decimals = parseInt(el.dataset.decimals || '0', 10);
+                el.textContent = (0).toFixed(decimals);
+                at(delay, function () {
+                    var start = performance.now();
+                    (function tick(now) {
+                        var t = Math.min(1, (now - start) / dur);
+                        var e = 1 - Math.pow(1 - t, 4);
+                        el.textContent = (target * e).toFixed(decimals);
+                        if (t < 1) requestAnimationFrame(tick);
+                    })(start);
+                });
+            }
+
+            // Highlight rectangle wipes left -> right (animated CSS var on the label)
+            function wipe(el, delay) {
+                anim(el, [{ '--wipe': 0 }, { '--wipe': 1 }], { duration: 380, delay: delay, easing: SNAP });
+            }
+
+            function reset() {
+                running.forEach(function (a) { a.cancel(); });
+                timers.forEach(clearTimeout);
+                running = [];
+                timers = [];
+            }
+
+            function play() {
+                reset();
+
+                var top = $('#label-top');
+                var cup = $('#cup');
+                var cupShadow = $('#cup-shadow');
+                var b1 = $('#bubble-1');
+                var b2 = $('#bubble-2');
+                var c1 = $('#counter-1');
+                var c2 = $('#counter-2');
+                var end = $('#label-end');
+                var steam = stage.querySelectorAll('.steam path');
+
+                if (reduceMotion) {
+                    [top, end].forEach(function (el) { el.style.setProperty('--wipe', 1); });
+                    steam.forEach(function (p) { p.style.strokeDashoffset = 0; p.style.opacity = 1; });
+                    stage.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = el.dataset.count; });
+                    return;
+                }
+
+                // 0.00s — kicker + headline pop, highlight wipes
+                anim(top, [
+                    { transform: 'translateX(-50%) translateY(40px) scale(0.6)', opacity: 0 },
+                    { transform: 'translateX(-50%) translateY(0) scale(1)', opacity: 1 }
+                ], { duration: 420, delay: 100, easing: POP });
+                wipe(top, 300);
+
+                // 0.55s — cup drops in with a springy bounce + squash & stretch
+                anim(cup, [
+                    { transform: 'translateY(-1100px) scale(0.92, 1.1)', opacity: 1, offset: 0 },
+                    { transform: 'translateY(0) scale(1.16, 0.82)', offset: 0.42 },
+                    { transform: 'translateY(-120px) scale(0.95, 1.06)', offset: 0.6 },
+                    { transform: 'translateY(0) scale(1.07, 0.93)', offset: 0.76 },
+                    { transform: 'translateY(-22px) scale(0.99, 1.01)', offset: 0.88 },
+                    { transform: 'translateY(0) scale(1, 1)', offset: 1 }
+                ], { duration: 1100, delay: 550, easing: 'cubic-bezier(0.45, 0, 0.55, 1)' });
+                anim(cupShadow, [
+                    { transform: 'scale(0.2)', opacity: 0, offset: 0 },
+                    { transform: 'scale(1.15)', opacity: 1, offset: 0.42 },
+                    { transform: 'scale(0.75)', opacity: 0.7, offset: 0.6 },
+                    { transform: 'scale(1.05)', opacity: 1, offset: 0.76 },
+                    { transform: 'scale(1)', opacity: 1, offset: 1 }
+                ], { duration: 1100, delay: 550, easing: 'cubic-bezier(0.45, 0, 0.55, 1)' });
+
+                // 1.6s — steam draws on, then keeps wafting
+                steam.forEach(function (p, i) {
+                    anim(p, [
+                        { strokeDashoffset: 140, opacity: 0 },
+                        { strokeDashoffset: 0, opacity: 1 }
+                    ], { duration: 500, delay: 1600 + i * 120, easing: SNAP });
+                    var drift = p.animate([
+                        { transform: 'translateY(0)' },
+                        { transform: 'translateY(-14px)' },
+                        { transform: 'translateY(0)' }
+                    ], { duration: 1400 + i * 200, delay: 2100 + i * 120, iterations: Infinity, easing: 'ease-in-out' });
+                    running.push(drift);
+                });
+
+                // 2.3s / 2.75s — speech bubbles pop
+                [[b1, 2300, -6], [b2, 2750, 5]].forEach(function (cfg) {
+                    anim(cfg[0], [
+                        { transform: 'scale(0) rotate(' + (cfg[2] * 3) + 'deg)', opacity: 0 },
+                        { transform: 'scale(1.12) rotate(' + cfg[2] + 'deg)', opacity: 1, offset: 0.6 },
+                        { transform: 'scale(0.97) rotate(' + cfg[2] + 'deg)', offset: 0.82 },
+                        { transform: 'scale(1) rotate(' + cfg[2] + 'deg)', opacity: 1 }
+                    ], { duration: 520, delay: cfg[1], easing: 'ease-out' });
+                });
+
+                // Little cup wiggle as the bubbles land
+                at(2300, function () {
+                    running.push(cup.animate([
+                        { transform: 'rotate(0)' }, { transform: 'rotate(-4deg)' },
+                        { transform: 'rotate(3deg)' }, { transform: 'rotate(0)' }
+                    ], { duration: 420, easing: 'ease-in-out', composite: 'add' }));
+                });
+
+                // 3.4s / 3.7s — counters scale up rapidly and tick
+                [[c1, 3400], [c2, 3700]].forEach(function (cfg) {
+                    anim(cfg[0], [
+                        { transform: 'scale(0)', opacity: 0 },
+                        { transform: 'scale(1.18)', opacity: 1, offset: 0.55 },
+                        { transform: 'scale(0.95)', offset: 0.8 },
+                        { transform: 'scale(1)', opacity: 1 }
+                    ], { duration: 480, delay: cfg[1], easing: 'ease-out' });
+                    countUp(cfg[0].querySelector('[data-count]'), cfg[1] + 120, 900);
+                });
+
+                // 5.0s — closing label
+                anim(end, [
+                    { transform: 'translateX(-50%) scale(0.4)', opacity: 0 },
+                    { transform: 'translateX(-50%) scale(1.08)', opacity: 1, offset: 0.7 },
+                    { transform: 'translateX(-50%) scale(1)', opacity: 1 }
+                ], { duration: 460, delay: 5000, easing: 'ease-out' });
+                wipe(end, 5200);
+
+                // 8.2s — everything snaps out, then loop
+                [top, b1, b2, c1, c2, end, cup, cupShadow].forEach(function (el, i) {
+                    anim(el, [{ opacity: 1 }, { opacity: 0 }],
+                        { duration: 260, delay: 8200 + i * 30, easing: OUT, fill: 'forwards' });
+                });
+                at(LOOP_MS, play);
+            }
+
+            // Register --wipe so it interpolates smoothly
+            if (window.CSS && CSS.registerProperty) {
+                try {
+                    CSS.registerProperty({ name: '--wipe', syntax: '<number>', inherits: true, initialValue: '0' });
+                } catch (e) { /* already registered */ }
+            }
+
+            document.getElementById('replay').addEventListener('click', play);
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(play);
+            } else {
+                play();
+            }
+        })();
+    </script>
+</body>
+</html>
